@@ -1,21 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<h1>Ng if</h1>
+<div *ngIf="title === 'directives'">The title variable is directives</div>
+<div *ngIf="5 > 3">5 is bigger then 3</div>
 
-<router-outlet></router-outlet>
+<h1>Ngswitch</h1>
+<div [ngSwitch]="choice">
+  <div *ngSwitchCase="1">Choice 1</div>
+  <div *ngSwitchCase="2">Choice 2</div>
+  <div *ngSwitchCase="3">Choice 3</div>
+  <div *ngSwitchCase="4">Choice 4</div>
+</div>
+
+<h1>Style</h1>
+<div [style.background-color]="'green'">Green color</div>
+<div [ngStyle]="{color: 'white', 'background-color': 'pink', 'font-size': '20px'}">My text</div>
+
+<br>
+<div>
+  <label for="color">Color</label>
+  <input type="text" name="color" value="{{ color }}" #colorinput>
+</div>
+<div>
+  <label for="fontSize">Font</label>
+  <input type="text" name="fontSize" value="{{ fontSize }}" #fontinput>
+</div>
+<button (click)="apply(colorinput.value, fontinput.value)">Apply changes</button>
+<div>
+  <span [ngStyle]="{color: color, 'font-size.px': fontSize}">This text has a color from an input</span>
+</div>
+
+<h1>Class</h1>
+<div [ngClass]="classesObj">
+  Using object literal. Border {{ isBordered ? 'On' : 'Off' }}
+</div>
+
+<h1>For</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let p of people">
+    <td>{{ p.name }}</td>
+    <td>{{ p.age }}</td>
+    <td>{{ p.city }}</td>
+  </tr>
+</table>
+
+<h1>Index</h1>
+<div *ngFor="let c of people; let num = index">
+  <div>{{ num + 1 }} - {{ c.city }}</div>
+</div>
+
+<h1>NonBindable</h1>
+<span>{{ color }}</span>
+<span ngNonBindable> This is what {{ color }} rendered</span>
+
